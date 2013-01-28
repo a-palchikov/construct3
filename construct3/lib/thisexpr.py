@@ -50,7 +50,7 @@ class ExprMixin(object):
     def __rshift__(self, other):
         return BinExpr(operator.rshift, self, other)
     def __lshift__(self, other):
-        return BinExpr(operator.rshift, self, other)
+        return BinExpr(operator.lshift, self, other)
     def __and__(self, other):
         return BinExpr(operator.and_, self, other)
     def __or__(self, other):
