@@ -15,7 +15,7 @@ opnames = {
     operator.rshift : ">>",
     operator.and_ : "&",
     operator.or_ : "|",
-    operator.not_ : "~",
+    operator.not_ : "not",
     operator.neg : "-",
     operator.pos : "+",
     operator.contains : "in",
@@ -25,6 +25,7 @@ opnames = {
     operator.le : "<=",
     operator.eq : "==",
     operator.ne : "!=",
+    operator.inv : "~",
 }
 
 
@@ -87,9 +88,11 @@ class ExprMixin(object):
     def __pos__(self):
         return UniExpr(operator.pos, self)
     def __invert__(self):
-        return UniExpr(operator.not_, self)
+        return UniExpr(operator.inv, self)
     __inv__ = __invert__
-    
+    def __not__(self):
+        return UniExpr(operator.not_, self)
+
     def __contains__(self, other):
         return BinExpr(operator.contains, self, other)
     def __gt__(self, other):
